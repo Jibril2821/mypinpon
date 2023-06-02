@@ -79,6 +79,7 @@
                     //端
                     if (this.x + this.r > canvas.width || this.x - this.r < 0) {
                         this.vx *= -1;
+                        this.vy *= 1.05;
                     }
 
                     //上
@@ -97,8 +98,8 @@
                         this.vy *= -1;
                         score++;
                         if (score % 3 === 0) {
-                            this.vx *= 4.0;
-                            paddle.w *= 1.0;
+                            this.vx *= 3.0;
+                            paddle.w *= 0.9;
                         }
                     }
                 }
@@ -126,7 +127,7 @@
             function init() {
                 score = 0;
                 isPlaying = true;
-                myPaddle = new Paddle(200, 10);
+                myPaddle = new Paddle(350, 10);
                 myBall = new Ball(rand(50, 250), rand(10, 80), rand(6, 8), rand(6, 8), 6);
                 scoreLabel = new Label(10, 25);
                 scoreLabel.draw('SCORE: ' + score);
