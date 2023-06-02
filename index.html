@@ -78,12 +78,12 @@
                     this.y += this.vy;
                     //端
                     if (this.x + this.r > canvas.width || this.x - this.r < 0) {
-                        this.vx *= -1;
+                        this.vx *= -0.9;
                     }
 
                     //上
                     if (this.y -this.r < 0) {
-                        this.vy *= -1;
+                        this.vy *= -1.1;
                     }
 
                     //下
