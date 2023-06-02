@@ -97,11 +97,8 @@
                         this.vy *= -1;
                         score++;
                         if (score % 3 === 0) {
-                            this.vx *= 1.5;
-                            paddle.w *= 0.95;
-                        }
-                        if (score % 2 === 0) {
-                            this.vx *= 0.9;
+                            this.vx *= Math.floor(Math.random()) + 0.5;
+                            paddle.w *= Math.floor(Math.random()) + 0.5;
                         }
                     }
                 }
@@ -129,8 +126,8 @@
             function init() {
                 score = 0;
                 isPlaying = true;
-                myPaddle = new Paddle(700, 10);
-                myBall = new Ball(rand(50, 250), rand(10, 80), rand(6, 8), rand(6, 8), 24);
+                myPaddle = new Paddle(600, 15);
+                myBall = new Ball(rand(50, 250), rand(10, 80), rand(6, 8), rand(6, 8), 6);
                 scoreLabel = new Label(10, 25);
                 scoreLabel.draw('SCORE: ' + score);
             }
