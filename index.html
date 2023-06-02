@@ -98,7 +98,10 @@
                         score++;
                         if (score % 3 === 0) {
                             this.vx *= 1.5;
-                            paddle.w *= 0.1;
+                            paddle.w *= 0.95;
+                        }
+                        if (score % 2 === 0) {
+                            this.vx *= 0.9;
                         }
                     }
                 }
