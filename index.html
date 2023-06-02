@@ -126,7 +126,7 @@
             function init() {
                 score = 0;
                 isPlaying = true;
-                myPaddle = new Paddle(, 15);
+                myPaddle = new Paddle(300, 15);
                 myBall = new Ball(rand(50, 250), rand(10, 80), rand(6, 8), rand(6, 8), 6);
                 scoreLabel = new Label(10, 25);
                 scoreLabel.draw('SCORE: ' + score);
