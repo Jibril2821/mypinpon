@@ -99,6 +99,7 @@
                         if (score % 3 === 0) {
                             if (score % 9 === 0) {
                                 this.vx *= 0.25;
+                                paddle.w *= 1.5;
                             } else {
                                 this.vx *= 3.0;
                                 paddle.w *= Math.random() + 0.4;
