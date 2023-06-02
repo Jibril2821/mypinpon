@@ -79,7 +79,6 @@
                     //端
                     if (this.x + this.r > canvas.width || this.x - this.r < 0) {
                         this.vx *= -1;
-                        this.vy *= 1.1;
                     }
 
                     //上
@@ -150,7 +149,7 @@
 
                 timerId = setTimeout(function() {
                     update();
-                }, 30); 
+                }, 10); 
                 if (!isPlaying) clearTimeout(timerId);
             }
 
