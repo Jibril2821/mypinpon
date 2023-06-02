@@ -97,8 +97,8 @@
                         this.vy *= -1;
                         score++;
                         if (score % 3 === 0) {
-                            this.vx *= 2.0;
-                            paddle.w *= 0.9;
+                            this.vx *= 1.5;
+                            paddle.w *= 0.8;
                         }
                     }
                 }
@@ -126,7 +126,7 @@
             function init() {
                 score = 0;
                 isPlaying = true;
-                myPaddle = new Paddle(350, 10);
+                myPaddle = new Paddle(700, 10);
                 myBall = new Ball(rand(50, 250), rand(10, 80), rand(6, 8), rand(6, 8), 12);
                 scoreLabel = new Label(10, 25);
                 scoreLabel.draw('SCORE: ' + score);
@@ -149,7 +149,7 @@
 
                 timerId = setTimeout(function() {
                     update();
-                }, 10); 
+                }, 5); 
                 if (!isPlaying) clearTimeout(timerId);
             }
 
