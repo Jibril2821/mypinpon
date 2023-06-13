@@ -57,6 +57,7 @@
                 this.h = h;
                 this.duration = duration;
                 this.isActive = false;
+                
                 this.draw = function() {
                     ctx.fillStyle = '#00ff00';
                     ctx.fillRect(this.x, this.y, this.w, this.h);
@@ -125,13 +126,11 @@
                         this.vy *= -1;
                         score++;
                         if (score % 3 === 0) {
-                            if (score % 9 === 0) {
-                                this.vx *= 0.25;
-                                paddle.w *= 1.5;
-                            } else {
-                                this.vx *= 3.0;
-                                paddle.w *= Math.random() + 0.4;
+                            if (Math.random() < 0.01 && !myPowerUp.isActive) {
+                                myPowerUp.draw();
                             }
+                            this.vx *= 3.0;
+                            paddle.w *= Math.random() + 0.4;
                         }
                         
                         
@@ -183,10 +182,6 @@
                 myBall.draw();
                 myBall.move();
                 myBall.checkCollision(myPaddle);
-                
-                if (Math.random() < 0.01 && !myPowerUp.isActive) {
-                    myPowerUp.draw();
-                }
 
                 if (myBall.checkCollision(myPowerUp) && !myPowerUp.isActive) {
                     myPowerUp.activate();
