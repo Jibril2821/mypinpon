@@ -126,9 +126,6 @@
                         this.vy *= -1;
                         score++;
                         if (score % 3 === 0) {
-                            if (Math.random() < 0.01 && !myPowerUp.isActive) {
-                                myPowerUp.draw();
-                            }
                             this.vx *= 3.0;
                             paddle.w *= Math.random() + 0.4;
                         }
@@ -186,7 +183,13 @@
                 if (myBall.checkCollision(myPowerUp) && !myPowerUp.isActive) {
                     myPowerUp.activate();
                 }
-
+                
+                if (score % 3 == 0) {
+                    if (!myPowerUp.isActive) {
+                         myPowerUp.draw();
+                    }
+                }
+                
                 timerId = setTimeout(function() {
                     update();
                 }, 7); 
