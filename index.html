@@ -44,11 +44,39 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         $(function() {
-            var ctx, myPaddle, myBall, mouseX, score, scoreLabel, isPlaying = false, timerId;
+            var ctx, myPaddle, myBall, myPowerUp, mouseX, score, scoreLabel, isPlaying = false, timerId;
 
             var canvas = document.getElementById('mycanvas');
             if (!canvas || !canvas.getContext) return false;
             ctx = canvas.getContext('2d');
+            
+            var PowerUp = function(x, y, w, h, duration) {
+                this.x = x;
+                this.y = y;
+                this.w. = w;
+                this.h = h;
+                this.duration = duration;
+                this.isActive = false;
+                this.draw = function() {
+                    ctx.fillStyle = '#00ff00';
+                    ctx.fillRect(this.x, this.y, this.w, this.h);
+                };
+                
+                this.activate = function() {
+                    this.isActive = true;
+                    myPaddle.w *= 1.5;
+                    setTimeout(function() {
+                        myPaddle.w /= 1.5;
+                        myPowerUp.reset();
+                    }, this.duration);
+                };
+                
+                this.reset = function() {
+                    this.isActive = false;
+                    this.x = rand(50, 700);
+                    this.y = rand(10, 200);
+                };
+            };
 
             var Label = function(x, y) {
                 this.x = x;
@@ -137,6 +165,8 @@
                 myBall = new Ball(rand(50, 700), rand(10, 200), rand(2, 5), rand(5, 8), 6);
                 scoreLabel = new Label(10, 25);
                 scoreLabel.draw('SCORE: ' + score);
+                
+                myPowerUp = new PowerUp(rand(50, 700), rand(10, 200), 40, 20, 5000);
             }
 
 
@@ -153,6 +183,14 @@
                 myBall.draw();
                 myBall.move();
                 myBall.checkCollision(myPaddle);
+                
+                if (Math.random() < 0.01 && !myPowerUp.isActive) {
+                    myPowerUp.draw();
+                }
+
+                if (myBall.checkCollision(myPowerUp) && !myPowerUp.isActive) {
+                    myPowerUp.activate();
+                }
 
                 timerId = setTimeout(function() {
                     update();
