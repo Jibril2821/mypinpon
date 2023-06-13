@@ -131,8 +131,6 @@
                         if (score % 3 === 0) {
                             this.vx *= 1.0;
                         }
-                        
-                        
                     }
                 }
 
@@ -181,15 +179,13 @@
                 myBall.draw();
                 myBall.move();
                 myBall.checkCollision(myPaddle);
+                
+                if ((score % 3 === 0 && !myPowerUp.isExist) || (myPowerUp.isExist && !myPowerUp.isActive)) {
+                    myPowerUp.draw();
+                }
 
                 if (myBall.checkCollision(myPowerUp) && !myPowerUp.isActive) {
                     myPowerUp.activate();
-                }
-                
-                if (score % 3 == 0) {
-                    if (!myPowerUp.isActive && !myPowerUp.isExist) {
-                         myPowerUp.draw();
-                    }
                 }
                 
                 timerId = setTimeout(function() {
