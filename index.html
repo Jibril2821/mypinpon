@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <title>ピンポンゲームver2023/06/13 17:03</title>
+    <title>ピンポンゲームver2023/06/13 17:18</title>
     <style>
         body {
             margin: 0;
@@ -47,8 +47,8 @@
             var ctx, myPaddle, myBall, myPowerUp, mouseX, score, scoreLabel, isPlaying = false, timerId;
             var powerUps = [];
             var powerUpSize = 50;
-            var numRowPowerUps = 300 / powerUpSize;
-            var numColPowerUps = 650 / powerUpSize;
+            var numRowPowerUps = 6;
+            var numColPowerUps = 13;
 
             var canvas = document.getElementById('mycanvas');
             if (!canvas || !canvas.getContext) return false;
