@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <title>ピンポンゲームver2023/06/13 16:37</title>
+    <title>ピンポンゲームver2023/06/13 16:46</title>
     <style>
         body {
             margin: 0;
@@ -79,6 +79,7 @@
                         ball.y + ball.r > this.y &&
                         ball.y - ball.r < this.y + this.h
                     ) {
+                        ball.vy *= -1;
                         return true;
                     }
                     return false;
