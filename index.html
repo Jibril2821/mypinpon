@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <title>ピンポンゲームver2023/06/13 19:21</title>
+    <title>ピンポンゲームver2023/06/13 19:26</title>
     <style>
         body {
             margin: 0;
@@ -212,7 +212,7 @@
                     if (!powerUp.isActive) {
                         powerUp.draw();
                         for (var i = 0; i < myBalls.length; i++) {
-                            if (powerUp.checkCollision(myBalls.[i])) {
+                            if (powerUp.checkCollision(myBalls[i])) {
                                 powerUp.activate();
                             }
                         }
