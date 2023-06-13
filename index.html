@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <title>ピンポンゲームver2023/06/13 16:22</title>
+    <title>ピンポンゲームver2023/06/13 16:37</title>
     <style>
         body {
             margin: 0;
@@ -57,12 +57,10 @@
                 this.h = h;
                 this.duration = duration;
                 this.isActive = false;
-                this.isExist = false;
                 
                 this.draw = function() {
                     ctx.fillStyle = '#00ff00';
                     ctx.fillRect(this.x, this.y, this.w, this.h);
-                    this.isExist = true;
                 };
                 
                 this.activate = function() {
@@ -74,9 +72,20 @@
                     }, this.duration);
                 };
                 
+                this.checkCollision = function(ball) {
+                    if (
+                        ball.x + ball.r > this.x &&
+                        ball.x - ball.r < this.x + this.w &&
+                        ball.y + ball.r > this.y &&
+                        ball.y - ball.r < this.y + this.h
+                    ) {
+                        return true;
+                    }
+                    return false;
+                };
+                
                 this.reset = function() {
                     this.isActive = false;
-                    this.isExist = false;
                     this.x = rand(50, 700);
                     this.y = rand(10, 200);
                 };
@@ -162,7 +171,7 @@
                 scoreLabel = new Label(10, 25);
                 scoreLabel.draw('SCORE: ' + score);
                 
-                myPowerUp = new PowerUp(rand(50, 700), rand(10, 200), 40, 20, 5000);
+                myPowerUp = new PowerUp(rand(50, 700), rand(10, 200), 20, 20, 5000);
             }
 
 
@@ -180,12 +189,11 @@
                 myBall.move();
                 myBall.checkCollision(myPaddle);
                 
-                if ((score % 3 === 0 && !myPowerUp.isExist) || (myPowerUp.isExist && !myPowerUp.isActive)) {
+                if (!myPowerUp.isActive) {
                     myPowerUp.draw();
-                }
-
-                if (myBall.checkCollision(myPowerUp) && !myPowerUp.isActive) {
-                    myPowerUp.activate();
+                    if (myPowerUp.checkCollision(myBall)) {
+                        myPowerUp.activate();
+                    }
                 }
                 
                 timerId = setTimeout(function() {
