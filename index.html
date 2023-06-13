@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <title>ピンポンゲームver2023/06/13 16:46</title>
+    <title>ピンポンゲームver2023/06/13 17:03</title>
     <style>
         body {
             margin: 0;
@@ -45,6 +45,10 @@
     <script>
         $(function() {
             var ctx, myPaddle, myBall, myPowerUp, mouseX, score, scoreLabel, isPlaying = false, timerId;
+            var powerUps = [];
+            var powerUpSize = 50;
+            var numRowPowerUps = 300 / powerUpSize;
+            var numColPowerUps = 650 / powerUpSize;
 
             var canvas = document.getElementById('mycanvas');
             if (!canvas || !canvas.getContext) return false;
@@ -171,8 +175,13 @@
                 myBall = new Ball(rand(50, 700), rand(10, 200), rand(2, 5), rand(5, 8), 6);
                 scoreLabel = new Label(10, 25);
                 scoreLabel.draw('SCORE: ' + score);
-                
-                myPowerUp = new PowerUp(rand(50, 700), rand(10, 200), 20, 20, 5000);
+    
+                for (var i = 0; i < numRowPowerUps; i++) {
+                    for (var j = 0; j < numColPowerUps: j++) {
+                        var powerUp = new PowerUp(50 + powerUpSize * i, 50 + powerUpSize * j, powerUpSize, powerUpSize, 2000);
+                        powerUps.push(powerUp);
+                    }
+                }
             }
 
 
@@ -190,10 +199,13 @@
                 myBall.move();
                 myBall.checkCollision(myPaddle);
                 
-                if (!myPowerUp.isActive) {
-                    myPowerUp.draw();
-                    if (myPowerUp.checkCollision(myBall)) {
-                        myPowerUp.activate();
+                for (var i = 0; i < powerUps.length; i++) {
+                    var powerUp = powerUps[i];
+                    if (!powerUp.isActive) {
+                        powerUp.draw();
+                        if (powerUp.checkCollision(myBall)) {
+                            powerUp.activate();
+                        }
                     }
                 }
                 
