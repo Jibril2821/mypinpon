@@ -57,10 +57,12 @@
                 this.h = h;
                 this.duration = duration;
                 this.isActive = false;
+                this.isExist = false;
                 
                 this.draw = function() {
                     ctx.fillStyle = '#00ff00';
                     ctx.fillRect(this.x, this.y, this.w, this.h);
+                    this.isExist = true;
                 };
                 
                 this.activate = function() {
@@ -126,8 +128,7 @@
                         this.vy *= -1;
                         score++;
                         if (score % 3 === 0) {
-                            this.vx *= 3.0;
-                            paddle.w *= Math.random() + 0.4;
+                            this.vx *= 1.0;
                         }
                         
                         
@@ -185,7 +186,7 @@
                 }
                 
                 if (score % 3 == 0) {
-                    if (!myPowerUp.isActive) {
+                    if (!myPowerUp.isActive && myPowerUp.isExist) {
                          myPowerUp.draw();
                     }
                 }
