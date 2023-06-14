@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <title>ピンポンゲームver2023/06/14 16:20</title>
+    <title>ピンポンゲームver2023/06/14 16:36</title>
     <style>
         body {
             margin: 0;
@@ -70,12 +70,6 @@
                 this.activate = function() {
                     this.isActive = true;
                     score++;
-
-                    if (score % 10 === 0) {
-                        myBall.vy *= 1.2;
-                        myPaddle.w *= 0.9;
-                    }
-                    
                     setTimeout(function() {
                     }, this.duration);
                 };
@@ -156,6 +150,10 @@
                             this.vx += 1;
                         }
                         this.vy *= -1;
+                        if (score % 10 === 0) {
+                            myBall.vy *= 1.2;
+                            myPaddle.w *= 0.9;
+                        }
                     }
                 }
 
