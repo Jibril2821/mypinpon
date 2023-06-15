@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <title>ピンポンゲームver2023/06/15 16:12</title>
+    <title>ピンポンゲームver2023/06/15 16:20</title>
     <style>
         body {
             margin: 0;
@@ -46,9 +46,10 @@
         $(function() {
             var ctx, myPaddle, myBall, myPowerUp, mouseX, score, scoreLabel, isPlaying = false, timerId;
             var powerUps = [];
-            var powerUpSize = 25;
+            var powerUpSize = 50;
             var numRowPowerUps = 300 / powerUpSize;
             var numColPowerUps = 650 / powerUpSize;
+            var double = false;
 
             var canvas = document.getElementById('mycanvas');
             if (!canvas || !canvas.getContext) return false;
@@ -70,6 +71,12 @@
                 this.activate = function() {
                     this.isActive = true;
                     score++;
+                    if (score % 10 === 0) {
+                        double = true;
+                    } else {
+                        douvle = false;
+                    }
+                    
                     setTimeout(function() {
                     }, this.duration);
                 };
@@ -150,7 +157,7 @@
                             this.vx += 1;
                         }
                         this.vy *= -1;
-                        if (score % 10 === 0) {
+                        if (double) {
                             myBall.vy *= 1.2;
                             myPaddle.w *= 0.9;
                         }
