@@ -152,9 +152,9 @@
                         var site = Math.random();
                         console.log(site);
                         if (site <= 0.33) {
-                            this.vx += -1;
+                            this.vx += -2;
                         } else if (0.66 <= site) {
-                            this.vx += 1;
+                            this.vx += 2;
                         }
                         this.vy *= -1;
                         if (double) {
@@ -227,7 +227,7 @@
                 
                 timerId = setTimeout(function() {
                     update();
-                }, 0.01); 
+                }, 1); 
                 if (!isPlaying) clearTimeout(timerId);
             }
 
