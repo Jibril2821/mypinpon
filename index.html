@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <title>ピンポンゲームver2023/06/15 16:04</title>
+    <title>ピンポンゲームver2023/06/15 16:12</title>
     <style>
         body {
             margin: 0;
@@ -142,7 +142,7 @@
                 };
                 this.checkCollision = function(paddle) {
                     if ((this.y + this.r > paddle.y && this.y +this.r < paddle.y + paddle.h) && (this.x > paddle.x - paddle.w / 2 && this.x < paddle.x + paddle.w /2)) {
-                        var site = ((paddle.x + paddle.w /2) - (paddle.x - paddle.w / 2)) / paddle.w;
+                        var site = Math.random();
                         console.log(site);
                         if (site <= 0.33) {
                             this.vx += -1;
@@ -220,7 +220,7 @@
                 
                 timerId = setTimeout(function() {
                     update();
-                }, 0.05); 
+                }, 0.01); 
                 if (!isPlaying) clearTimeout(timerId);
             }
 
